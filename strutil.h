@@ -82,7 +82,14 @@ char* str_find(char* str, char* sub){
 	return p;
 };
 
-void str_trim(char* str){
+void str_trim(char* str){	
+
+	char* s;
+	char* e;
+
+	for(char* p= str; *p; p++){
+
+	}
 
 };
 
