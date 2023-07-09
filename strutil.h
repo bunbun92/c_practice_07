@@ -31,7 +31,7 @@ bool str_compare(char* a, char* b){
 
 void str_copy(char* dst, char* src){
 
-// 	str_copy ¾È¿¡ µ¿ÀûÇÒ´çÇÏ¸é ¿Ö ¾ÈµÇ´ÂÁö
+// 	str_copy ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ò´ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ ï¿½ÈµÇ´ï¿½ï¿½ï¿½
 // 	dst = new char[str_length(src) + 1];
 	int i= 0;
 
@@ -84,13 +84,30 @@ char* str_find(char* str, char* sub){
 
 void str_trim(char* str){	
 
+	int length = str_length(str);
 	char* s;
 	char* e;
 
 	for(char* p= str; *p; p++){
-
+		if(*p != ' '){
+			s = p;
+			break;
+		}
 	}
 
+	for(char* p= str + length - 1; *p; p--){
+		if(*p != ' '){
+			e = p;
+			break;
+		}
+	}
+
+	for(char* p= s; p <= e; p++){
+		*str = *p;
+		str++;
+	}
+
+	*str = 0;
 };
 
 

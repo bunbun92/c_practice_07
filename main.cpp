@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "strutil.h"
+#include "arr.h"
 
-void main(){
+int main(){
 
 	printf("%d\n", 22);
 
@@ -28,4 +29,30 @@ void main(){
 
 	printf("%s\n", str_find(p1, p2));
 	printf("22\n");
+
+	char p5[] = "  ai jf  ";
+
+	printf("trim:%s:\n", p5);
+	str_trim(p5);
+	printf("trim:%s:\n", p5);
+
+
+	Arr p6;
+	Arr* p7= &p6;
+	
+
+	arr_alloc(p7, 5);
+
+	arr_push_back(p7, 'a');
+
+	printf("p7: %s\n", p7->A);
+
+	arr_push_back(p7, 'g');
+
+	printf("p7: %s\n", p7->A);
+
+	arr_push_at(p7, 'D', 4);
+
+	printf("p7: %s\n", p7->A);
+	return 0;
 }
