@@ -55,8 +55,23 @@ int main(){
 
 	printf("p7: %s, N: %d\n", p7->A, p7->N);
 
-	char* p8= "0";
+	char* p8= "3425";
 
-	printf("%d", str_to_int(p8));
+	printf("%d\n", str_to_int(p8));
+
+	Arr p9;
+	Arr* p10= &p9;
+
+	arr_alloc(p10, 5);
+	arr_push_back(p10, '3');
+	arr_push_back(p10, '4');
+	arr_push_back(p10, 'g');
+	arr_push_back(p10, '4');
+	printf("%s, %d\n", p10->A, p10->A);
+	printf("%d\n", arr_min(p10));
+	printf("%s, %d\n", p10->A, p10->A);
+
+	printf("%.2lf\n", arr_avg(p10));
+	printf("%s, %d\n", p10->A, p10->A);
 	return 0;
 }

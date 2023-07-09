@@ -62,8 +62,30 @@ bool arr_push_at(Arr* pA, uint8 val, int pos){
 
 uint8 arr_min(Arr* pA){
 
+    int min = *(pA->A) - '0';
+    (pA->A)++;
+
+    for(; *(pA->A); (pA->A)++){
+        if(*(pA->A) >= '0' && *(pA->A) <= '9')
+            min = (*(pA->A) - '0') < min ? (*(pA->A) - '0') : min;
+    }
+
+    pA->A -= pA->size;
+    return min;
 }
 
 float arr_avg(Arr* pA){
 
+    int cnt = 0;
+    float result = 0;
+
+    for(; *(pA->A); (pA->A)++){
+        if(*(pA->A) >= '0' && *(pA->A) <= '9'){
+            result += *(pA->A) - '0';
+            cnt++;
+        }
+    }
+
+    pA->A -= pA->size;
+    return result / cnt;
 }
