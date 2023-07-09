@@ -49,10 +49,14 @@ int main(){
 
 	arr_push_back(p7, 'g');
 
-	printf("p7: %s\n", p7->A);
+	printf("p7: %s, N: %d\n", p7->A, p7->N);
 
 	arr_push_at(p7, 'D', 4);
 
-	printf("p7: %s\n", p7->A);
+	printf("p7: %s, N: %d\n", p7->A, p7->N);
+
+	char* p8= "0";
+
+	printf("%d", str_to_int(p8));
 	return 0;
 }

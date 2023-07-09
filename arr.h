@@ -59,3 +59,11 @@ bool arr_push_at(Arr* pA, uint8 val, int pos){
 
     return 1;
 }
+
+uint8 arr_min(Arr* pA){
+
+}
+
+float arr_avg(Arr* pA){
+
+}

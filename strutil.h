@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 
 int str_length(char* str){
@@ -111,5 +112,32 @@ void str_trim(char* str){
 };
 
 
-int str_to_int(char* str);
+int str_to_int(char* str){
+
+	int n = str_length(str) - 1;
+	int result = 0;
+	bool minusCheck = false;
+
+	if( n < 0 )
+		return 0;
+
+	if(*str == '-'){
+		minusCheck = true;
+		str++;
+		n--;
+	}
+		
+	for(; *str; str++){
+		if(*str >= '0' && *str <= '9'){
+			result += (*str - '0') * pow(10, n);
+			n--;
+		}else
+			return 0;
+	}
+
+	if(minusCheck)
+		result *= -1;
+	
+	return result;
+}
 
