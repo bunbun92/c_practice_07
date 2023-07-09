@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "strutil.h"
 #include "arr.h"
+#include "heap.h"
 
 int main(){
 
@@ -73,5 +75,15 @@ int main(){
 
 	printf("%.2lf\n", arr_avg(p10));
 	printf("%s, %d\n", p10->A, p10->A);
+
+	Heap a;
+	Heap* b = &a;
+
+	printf("oo= %s \n", b);
+
+	heap_init(b);
+
+	printf("oo= %s\n", b);
+
 	return 0;
 }
