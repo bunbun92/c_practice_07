@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "strutil.h"
 
 
 #define MaxHeapL 1000
@@ -27,6 +28,8 @@ void heap_init(Heap* h){
 }
 
 char* heap_alloc(Heap* h, int sz){
+
+    char* address;
     
     if(sz > MaxHeapL - 5)
         return 0;
@@ -35,13 +38,17 @@ char* heap_alloc(Heap* h, int sz){
 
     for(int i= 0; i< MaxHeapL; i++){
         if(h->pool[i] == 'f'){
+            address = &(h->pool[i]);
             temp = atoi(&(h->pool[i+1]));
 
             if(sz > temp - 5)
                 return 0;
 
+            heap_int_to_string(address +1, temp - (sz + 5));
+            str_copy(address + (sz+5), address);
             
-            
+            *address = 'a';
+            heap_int_to_string(address +1, sz);
         }
     }
 
