@@ -86,8 +86,8 @@ char* str_find(char* str, char* sub){
 void str_trim(char* str){	
 
 	int length = str_length(str);
-	char* s;
-	char* e;
+	char* s= 0;
+	char* e= 0;
 
 	for(char* p= str; *p; p++){
 		if(*p != ' '){
@@ -129,7 +129,7 @@ int str_to_int(char* str){
 		
 	for(; *str; str++){
 		if(*str >= '0' && *str <= '9'){
-			result += (*str - '0') * pow(10, n);
+			result += (*str - '0') * pow(10.0, n);
 			n--;
 		}else
 			return 0;

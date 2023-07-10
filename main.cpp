@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "strutil.h"
+/*#include "strutil.h"*/
 #include "arr.h"
 #include "heap.h"
 
@@ -68,22 +68,54 @@ int main(){
 	arr_push_back(p10, '3');
 	arr_push_back(p10, '4');
 	arr_push_back(p10, 'g');
-	arr_push_back(p10, '4');
-	printf("%s, %d\n", p10->A, p10->A);
+	arr_push_back(p10, '2');
+
+	printf("oo %s, %d\n", p10->A, p10->A);
+
 	printf("%d\n", arr_min(p10));
 	printf("%s, %d\n", p10->A, p10->A);
 
-	printf("%.2lf\n", arr_avg(p10));
+	printf("avg= %.2lf\n", arr_avg(p10));
+	printf("%s, %d\n", p10->A, p10->A);
+
+	printf("avg= %.2lf\n", arr_avg(p10));
+	printf("%s, %d\n", p10->A, p10->A);
+
+	printf("%d\n", arr_min(p10));
+	printf("%s, %d\n", p10->A, p10->A);
+
+	printf("%d\n", arr_min(p10));
 	printf("%s, %d\n", p10->A, p10->A);
 
 	Heap a;
 	Heap* b = &a;
 
-	printf("oo= %s \n", b);
+	puts("");
+	puts("heap");
+	printf("init 전		= %s \n", b);
 
 	heap_init(b);
 
-	printf("oo= %s\n", b);
+	printf("init 후		= %s\n", b);
 
+	char* p11 = heap_alloc(b, 10);
+	printf("alloc 리턴 주소	= %s\n", p11);
+	printf("alloc 후	= %s\n", b);
+
+	char* p12 = heap_alloc(b, 20);
+	printf("alloc 리턴 주소	= %s\n", p12);
+	printf("alloc 후	= %s\n", b);
+// 
+// 	printf("oi= %s\n", heap_alloc(b, 100));
+// 	printf("ooo= %s\n", b);
+
+// 	heap_free(p11);
+// 	printf("free 후		= %s\n", b);
+	
+	heap_free(p12);
+	printf("free 후		= %s\n", b);
+
+	heap_free(b->pool);
+	printf("free 후		= %s\n", b);
 	return 0;
 }
