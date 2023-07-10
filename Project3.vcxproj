@@ -71,6 +71,7 @@
     <ClInclude Include="arr.h" />
     <ClInclude Include="arr2.h" />
     <ClInclude Include="heap.h" />
+    <ClInclude Include="heap_test.h" />
     <ClInclude Include="strutil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

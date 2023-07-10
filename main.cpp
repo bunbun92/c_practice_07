@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*#include "strutil.h"*/
+#include "strutil.h"
 #include "arr.h"
 #include "heap.h"
+/*#include "heap_test.h"*/
 
 int main(){
 
@@ -87,35 +88,49 @@ int main(){
 	printf("%d\n", arr_min(p10));
 	printf("%s, %d\n", p10->A, p10->A);
 
-	Heap a;
-	Heap* b = &a;
+// 	Heap a;
+// 	Heap* b = &a;
+// 
+// 	puts("");
+// 	puts("heap");
+// 	printf("init 전		= %s \n", b);
+// 
+// 	heap_init(b);
+// 
+// 	printf("init 후		= %s\n", b);
+// 
+// 	char* p11 = heap_alloc(b, 10);
+// 	printf("alloc 리턴 주소	= %s\n", p11);
+// 	printf("alloc 후	= %s\n", b);
+// 
+// 	char* p12 = heap_alloc(b, 20);
+// 	printf("alloc 리턴 주소	= %s\n", p12);
+// 	printf("alloc 후	= %s\n", b);
+// // 
+// // 	printf("oi= %s\n", heap_alloc(b, 100));
+// // 	printf("ooo= %s\n", b);
+// 
+// // 	heap_free(p11);
+// // 	printf("free 후		= %s\n", b);
+// 	
+// 	heap_free(p12);
+// 	printf("free 후		= %s\n", b);
+// 
+// 	heap_free(b->pool);
+// 	printf("free 후		= %s\n", b);
 
 	puts("");
-	puts("heap");
-	printf("init 전		= %s \n", b);
+	puts("");
 
-	heap_init(b);
+	Heap p15;
+	Heap* p16 = &p15;
 
-	printf("init 후		= %s\n", b);
+	heap_init(p16);
+	char* pa0= heap_alloc(p16, 15);
+	char* pa1= heap_alloc(p16, 10);
+	heap_free(pa0);
+	heap_free(pa1);
+	puts("");
 
-	char* p11 = heap_alloc(b, 10);
-	printf("alloc 리턴 주소	= %s\n", p11);
-	printf("alloc 후	= %s\n", b);
-
-	char* p12 = heap_alloc(b, 20);
-	printf("alloc 리턴 주소	= %s\n", p12);
-	printf("alloc 후	= %s\n", b);
-// 
-// 	printf("oi= %s\n", heap_alloc(b, 100));
-// 	printf("ooo= %s\n", b);
-
-// 	heap_free(p11);
-// 	printf("free 후		= %s\n", b);
-	
-	heap_free(p12);
-	printf("free 후		= %s\n", b);
-
-	heap_free(b->pool);
-	printf("free 후		= %s\n", b);
 	return 0;
 }

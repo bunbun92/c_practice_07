@@ -24,7 +24,7 @@ void arr_free(Arr* pA){
     pA->A = 0, pA->N= pA->size= 0;
 }
 
-#define arr_isFull(a) (a.N == a.size)
+#define arr_isFull(a) ((a).N == (a).size)
 #define arr_isEmpty(a) (a.N == 0)
 #define arr_at(a, i) a.A[i]
 
@@ -44,7 +44,8 @@ bool arr_pop_back(Arr* pA){
 }
 
 bool arr_push_at(Arr* pA, uint8 val, int pos){
-
+	if (arr_isFull(*pA))
+		return false;
     if(pA->N == pA->size || pos+1 > (pA->size))
         return 0;
 
