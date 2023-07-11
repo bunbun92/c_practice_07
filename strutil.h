@@ -60,24 +60,19 @@ void str_append(char* str, char* str2){
 	*str = 0;
 };
 
-
-char* str_find(char* str, char* sub){	
-
+//
+char* str_find(char* str, char* sub){
 	char* p = 0;
-	bool check = 0;
-
-	for(; *str, check == 0; str++){
-		if(*str == *sub){
+	for (; *str; str++){
+		if (*str == *sub){
 			p = str;
-			check = 1;
-
 			for (char* p2= sub; *p2; p2++){
-				if(*str != *p2){
-					check = 0;
+				if (*str != *p2){
+					p = 0;
 					break;
-				}				
+				}
 				str++;
-			}			
+			}
 		}
 	}
 	return p;
@@ -111,33 +106,13 @@ void str_trim(char* str){
 	*str = 0;
 };
 
-
-int str_to_int(char* str){
-
-	int n = str_length(str) - 1;
-	int result = 0;
-	bool minusCheck = false;
-
-	if( n < 0 )
-		return 0;
-
-	if(*str == '-'){
-		minusCheck = true;
-		str++;
-		n--;
-	}
-		
+//
+int str_to_int(char* str){	
+	int result = 0;		
 	for(; *str; str++){
-		if(*str >= '0' && *str <= '9'){
-			result += (*str - '0') * pow(10.0, n);
-			n--;
-		}else
-			return 0;
-	}
-
-	if(minusCheck)
-		result *= -1;
-	
+		result *= 10;
+		result += (*str - '0');		
+	}	
 	return result;
 }
 

@@ -1,11 +1,8 @@
 #include <stdlib.h>
-
-
-
 #define MaxHeapL 260
 
 typedef struct{
-	char pool[MaxHeapL];
+	char pool[MaxHeapL];	
 } Heap;
 
 void set_header(char* addr, char header, int sz){
@@ -31,7 +28,7 @@ char* heap_alloc(Heap* h, int sz){
 	char* p= 0;
 	if (p = find_free(h, sz)){
 		set_header(p+(sz+5), 'f', *((int*)(p+1)) - (sz+5));
-		set_header(p, 'a', sz);
+		set_header(p, 'a', sz);		
 	}
 	return p;
 }
