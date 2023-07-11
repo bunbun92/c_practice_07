@@ -70,6 +70,7 @@
   <ItemGroup>
     <ClInclude Include="arr.h" />
     <ClInclude Include="arr2.h" />
+    <ClInclude Include="heap_tools.h" />
     <ClInclude Include="heap.h" />
     <ClInclude Include="strutil.h" />
   </ItemGroup>

@@ -1,27 +1,9 @@
 #include <stdlib.h>
-#define MaxHeapL 260
-
-typedef struct{
-	char pool[MaxHeapL];	
-} Heap;
-
-void set_header(char* addr, char header, int sz){
-	*addr = header;
-	*((int*)(addr+1))= sz;
-}
-
-char* find_free(Heap* h, int sz){
-	for (int i=0; i< MaxHeapL; i++){
-		if (h->pool[i] == 'a')
-			i += *((int*)&(h->pool[i+1])) + 5;
-		if (h->pool[i] == 'f' && *((int*)(&h->pool[i+1])) >= sz + 5)
-			return &(h->pool[i]);
-	}
-	return 0;
-}
+#include "heap_tools.h"
 
 void heap_init(Heap* h){
 	set_header(h->pool, 'f', MaxHeapL - 5);
+	h->n= 0;
 }
 
 char* heap_alloc(Heap* h, int sz){
@@ -30,9 +12,33 @@ char* heap_alloc(Heap* h, int sz){
 		set_header(p+(sz+5), 'f', *((int*)(p+1)) - (sz+5));
 		set_header(p, 'a', sz);		
 	}
-	return p;
+	return head_push_back(h, p); ;
 }
 
-void heap_free(char* p){
-	set_header(p, 'f', *((int*)(p+1)));	
+void heap_free(Heap* h, char* p){
+	set_header(p, 'f', *((int*)(p+1)));
+	head_pop_at(h, p);
+}
+
+void heap_defrag(Heap* h){
+	char* dst = find_free(h, 0);
+
+	for (char* p = dst + *((int*)(dst+1)) + 5; p - (h->pool) < MaxHeapL-5; ){
+		int sz = *((int*)(p+1));
+
+		if(*p == 'f'){
+			*((int*)(dst+1)) += sz + 5;
+			set_null(p, 5);
+			p+= sz + 5;
+
+		}else if(*p == 'a'){
+			int dst_sz = *((int*)(dst+1));
+			set_header(dst, 'a', sz);
+			set_null(p, 5);
+			set_header(dst+(sz+5), 'f', dst_sz);
+			head_refresh(h, p, dst);
+			dst= find_free(h, 0);
+			p= dst + *((int*)(dst+1)) + 5;
+		}
+	}
 }

@@ -128,17 +128,18 @@ int main(){
 	heap_init(p16);
 	char* pa0= heap_alloc(p16, 15);
 	char* pa1= heap_alloc(p16, 10);
-	heap_free(pa0);
-	heap_free(pa1);
+	heap_free(p16, pa0);	
+
+	char* pa2 = heap_alloc(p16, 11);
+	char* pa3 = heap_alloc(p16, 17);
+
+	heap_defrag(p16);
 	puts("");
 
-	char* a = "aosiepiq";
-	char* b = "si";
-
-	printf("%s\n", str_find(a, b));
-
-	char* c = "42431";
-
-	printf("%d\n", str_to_int(c) + 3);
+// 	head_push_back(p16, pa0);
+// 	head_push_back(p16, pa1);
+// 
+// 	head_pop_at(p16, pa0);
+// 	head_pop_at(p16, pa1);
 	return 0;
 }
