@@ -1,9 +1,9 @@
 #define MaxHeapL 260
+#define MaxHeadL MaxHeapL/6 + 1
 
 typedef struct{
 	char pool[MaxHeapL];
-	char* head[MaxHeapL/6 + 1];
-	int n;
+	char* head[MaxHeadL];
 } Heap;
 
 void set_null(char* p, int n){
@@ -29,28 +29,34 @@ char* find_free(Heap* h, int sz){
 	return 0;
 }
 
-char* head_push_back(Heap* h, char* p){
-	h->head[h->n++] = p;
-	return (h->head[h->n-1]);
-}
-
-void head_pop_at(Heap* h, char* p){
-	for (int i= 0; i< h->n; i++){
-		if (h->head[i] == p){
-			for (int j=i; j < h->n; j++)
-				h->head[j] = h->head[j+1];
-			break;
-		}
-	}
-	h->n--;
-}
-
 void head_refresh(Heap* h, char* befo, char* aftr){
-	for (int i= 0; i< h->n; i++){
+	for (int i= 0; i< MaxHeadL; i++){
 		if (h->head[i] == befo){
 			h->head[i] = aftr;
 			break;
 		}
 	}
 }
+
+char** head_push_back(Heap* h, char* p){
+	for (int i= 0; i< MaxHeadL; i++){
+		if(h->head[i] == 0){
+			h->head[i] = p;
+			return &(h->head[i]);
+		}
+	}
+}
+
+void head_pop_at(Heap* h, char* p){
+	for (int i= 0; i< MaxHeadL; i++){
+		if (h->head[i] == p){
+// 			for (int j=i; j < h->n; j++)
+// 				h->head[j] = h->head[j+1];
+			h->head[i] = 0;
+			break;
+		}
+	}
+}
+
+
 

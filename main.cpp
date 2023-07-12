@@ -126,20 +126,18 @@ int main(){
 	Heap* p16 = &p15;
 
 	heap_init(p16);
-	char* pa0= heap_alloc(p16, 15);
-	char* pa1= heap_alloc(p16, 10);
+	char** pa0= heap_alloc(p16, 15);
+	char** pa1= heap_alloc(p16, 10);
 	heap_free(p16, pa0);	
 
-	char* pa2 = heap_alloc(p16, 11);
-	char* pa3 = heap_alloc(p16, 17);
+	char** pa2 = heap_alloc(p16, 11);
+	char** pa3 = heap_alloc(p16, 17);
 
 	heap_defrag(p16);
 	puts("");
 
-// 	head_push_back(p16, pa0);
-// 	head_push_back(p16, pa1);
-// 
-// 	head_pop_at(p16, pa0);
-// 	head_pop_at(p16, pa1);
+	heap_free(p16, pa2);
+	heap_free(p16, pa3);
+
 	return 0;
 }
